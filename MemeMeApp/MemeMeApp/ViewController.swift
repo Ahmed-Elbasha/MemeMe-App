@@ -13,13 +13,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var pickButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var BottomTextField: UITextField!
     
     var imagePickerController: UIImagePickerController!
+    
+    let memeTextAttributes: [String: Any] = [
+        NSAttributedStringKey.strokeColor.rawValue: UIColor.clear,
+        NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
+        NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSAttributedStringKey.strokeWidth.rawValue: Float()
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
+        
+        topTextField.defaultTextAttributes = memeTextAttributes
+        BottomTextField.defaultTextAttributes = memeTextAttributes
+        
+        topTextField.textAlignment = .center
+        BottomTextField.textAlignment = .center
     }
     
     override func viewWillAppear(_ animated: Bool) {
