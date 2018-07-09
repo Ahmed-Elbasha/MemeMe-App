@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,54 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWQ-XP-OfB">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Pick" id="G5F-7p-zfX">
+                                        <connections>
+                                            <action selector="pickAnImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="5Tu-Vh-BjJ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="205" style="plain" systemItem="fixedSpace" id="7RC-T9-Va1"/>
+                                    <barButtonItem title="Camera" id="cms-eI-qlR">
+                                        <connections>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="7dY-dl-FAP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="txN-Ez-Aud">
+                                <rect key="frame" x="67" y="244" width="240" height="179"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="179" id="OLa-aO-MuK"/>
+                                    <constraint firstAttribute="width" constant="240" id="q1o-Ty-lWj"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="iWQ-XP-OfB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5Jb-cY-env"/>
+                            <constraint firstItem="txN-Ez-Aud" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Wen-JY-Rwy"/>
+                            <constraint firstItem="iWQ-XP-OfB" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="i82-Jz-sU4"/>
+                            <constraint firstItem="iWQ-XP-OfB" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="mRw-mu-PDG"/>
+                            <constraint firstItem="txN-Ez-Aud" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="qyX-qW-nao"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="cameraButton" destination="cms-eI-qlR" id="EiB-Xe-n47"/>
+                        <outlet property="imagePickerView" destination="txN-Ez-Aud" id="Ko5-yS-Sp3"/>
+                        <outlet property="pickButton" destination="G5F-7p-zfX" id="7Cu-nV-IiJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="117.39130434782609"/>
         </scene>
     </scenes>
 </document>
