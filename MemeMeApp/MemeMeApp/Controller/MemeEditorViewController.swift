@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorViewController.swift
 //  MemeMeApp
 //
 //  Created by Ahmed Elbasha on 7/8/18.
@@ -8,13 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var pickButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
-    @IBOutlet weak var BottomTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
+    
+    var topText: String = ""
+    var bottomText: String = ""
+    var memedImage: UIImage!
     
     var imagePickerController: UIImagePickerController!
     
@@ -31,10 +35,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePickerController.delegate = self
         
         topTextField.defaultTextAttributes = memeTextAttributes
-        BottomTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.defaultTextAttributes = memeTextAttributes
         
         topTextField.textAlignment = .center
-        BottomTextField.textAlignment = .center
+        bottomTextField.textAlignment = .center
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +47,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         subscribeToKeyboardNotification()
         subscribeToKeyboardWillHideNotification()
         topTextField.delegate = self
-        BottomTextField.delegate = self
+        bottomTextField.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -116,6 +120,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func generateMemedImage() -> UIImage {
+        
+        // TODO: Hide ToolBar and NavBar
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        // TODO: Show ToolBar and NavBar
+        
+        return memedImage
+    }
+    
+    func saveMeme() {
+        topText = topTextField.text!
+        bottomText = bottomTextField.text!
+        memedImage = generateMemedImage()
+        let meme = Meme(topText: topText, bottomText: bottomText, originalImage: imagePickerView.image!, memedImage: memedImage)
     }
     
 }
