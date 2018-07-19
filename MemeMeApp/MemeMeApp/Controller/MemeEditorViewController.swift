@@ -9,12 +9,14 @@
 import UIKit
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
-
+    
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var pickButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
+    @IBOutlet weak var toolBar: UIToolbar!
     
     var topText: String = ""
     var bottomText: String = ""
@@ -66,6 +68,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func pickAnImageFromPhotoLibrary(_ sender: Any) {
         showImagePickerController(sourceType: .photoLibrary)
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        saveMeme()
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
     }
     
     func showImagePickerController(sourceType: UIImagePickerControllerSourceType) {
@@ -125,6 +134,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func generateMemedImage() -> UIImage {
         
         // TODO: Hide ToolBar and NavBar
+        toolBar.isHidden = true
+        navigationBar.isHidden = true
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -132,6 +143,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         UIGraphicsEndImageContext()
         
         // TODO: Show ToolBar and NavBar
+        toolBar.isHidden = false
+        navigationBar.isHidden = false
         
         return memedImage
     }

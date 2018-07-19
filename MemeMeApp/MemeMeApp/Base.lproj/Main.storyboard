@@ -50,8 +50,16 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Meme Editor" id="7Fh-nk-sby">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="bzS-ox-riZ"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="Md4-z1-LvR"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Share" id="bzS-ox-riZ">
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="BYZ-38-t0r" id="m4t-Z2-UgJ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="Md4-z1-LvR">
+                                            <connections>
+                                                <action selector="saveButtonPressed:" destination="BYZ-38-t0r" id="P1t-j1-X5f"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -99,7 +107,9 @@
                         <outlet property="bottomTextField" destination="lqj-57-MKt" id="Xde-qu-k9M"/>
                         <outlet property="cameraButton" destination="cms-eI-qlR" id="EiB-Xe-n47"/>
                         <outlet property="imagePickerView" destination="txN-Ez-Aud" id="Ko5-yS-Sp3"/>
+                        <outlet property="navigationBar" destination="B7I-0i-NNS" id="H9S-7H-ekh"/>
                         <outlet property="pickButton" destination="G5F-7p-zfX" id="7Cu-nV-IiJ"/>
+                        <outlet property="toolBar" destination="iWQ-XP-OfB" id="MfK-VG-niV"/>
                         <outlet property="topTextField" destination="bqW-7f-6d4" id="Rp0-rV-1W8"/>
                     </connections>
                 </viewController>
